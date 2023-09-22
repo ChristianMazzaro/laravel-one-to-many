@@ -26,7 +26,11 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->group(function(){
         Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
+        Route::resource('projects',ProjectController::class);
         Route::get('/projects',[ProjectController::class,'index'])->name('projects');
+        Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
+        Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create');
+        Route::post('/projects', [ProjectController::class, 'store'])->name('projects.store');
 });
 
 // Route::get('/dashboard', function () {

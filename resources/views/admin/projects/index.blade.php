@@ -21,7 +21,9 @@
                         <th scope="row">{{$project->id}}</th>
                         <td>{{$project->title}}</td>
                         <td>{{$project->slug}}</td>
-                        <td>Pulsanti</td>
+                        <td>
+                            <a href="project.show/{{$project->id}}" class="btn btn-primary my-2">Dettagli</a>
+                        </td>
                     </tr>
                     @endforeach
 
