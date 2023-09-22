@@ -22,7 +22,14 @@
                         <td>{{$project->title}}</td>
                         <td>{{$project->slug}}</td>
                         <td>
-                            <a href="project.show/{{$project->id}}" class="btn btn-primary my-2">Dettagli</a>
+                            <a href="projects/{{$project->id}}" class="btn btn-primary my-2">Dettagli</a>
+                            <a href="projects/{{$project->id}}/edit" class="btn btn-warning my-2">Modifica</a>
+                            <form action="{{ route('admin.projects.destroy', ['id' => $project->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Elimina</button>
+                            </form>
+                            
                         </td>
                     </tr>
                     @endforeach

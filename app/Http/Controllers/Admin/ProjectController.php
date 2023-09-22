@@ -38,7 +38,7 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'content' => 'required|string',
+            'content' => 'required',
         ]);
     
         
@@ -52,7 +52,7 @@ class ProjectController extends Controller
         $project->save();
     
         
-        return redirect()->route('admin.project.show', ['id' => $project->id]);
+        return redirect()->route('admin.projects', ['id' => $project->id]);
     }
 
     /**
@@ -69,24 +69,40 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+    public function edit(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'content' => 'required',
+        ]);
+    
+        $project = Project::findOrFail($id);
+        $project->title = $validatedData['title'];
+        $project->slug = $validatedData['slug'];
+        $project->content = $validatedData['content'];
+        $project->save();
+    
+        return redirect()->route('admin.projects', ['id' => $project->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->delete();
+    
+        return redirect()->route('admin.projects');
     }
 }
