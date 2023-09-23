@@ -27,7 +27,13 @@
                                 <a class="nav-link" href="{{ route('admin.projects') }}">Progetti</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="projects/create">Aggiungi un nuovo progetto</a>
+                                <a class="nav-link" href="{{ route('admin.types') }}">Tipologie</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.projects.create') }}">Aggiungi un nuovo progetto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.types.create') }}">Aggiungi una nuova categoria</a>
                             </li>
                         </ul>
                         <form method="POST" action="{{ route('logout') }}">

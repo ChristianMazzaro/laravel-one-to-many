@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 //models
 use App\Models\Project;
+use App\Models\Type;
 
 class ProjectSeeder extends Seeder
 {
@@ -16,12 +17,15 @@ class ProjectSeeder extends Seeder
     {
         Project::truncate();
         for ($i=0; $i < 20; $i++) { 
-            $title = substr(fake()->sentence(), 0, 255); 
+            $title = substr(fake()->sentence(), 0, 255);
+            $slug = str()->slug($title);
+            $content = fake()->paragraph();
+            $randomType = Type::inRandomOrder()->first();
             Project::create([
                 'title'=>$title,
-                'slug'=>str()->slug($title),
-                'content'=>fake()->paragraph(),
-
+                'slug'=>$slug,
+                'content'=>$content,
+                'type_id'=> $randomType->id,
             ]);
         }
     }

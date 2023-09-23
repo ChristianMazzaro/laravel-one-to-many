@@ -12,7 +12,8 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Slug</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Categorie</th>
+                    <th scope="col">Pulsanti</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,11 @@
                         <td>{{$project->title}}</td>
                         <td>{{$project->slug}}</td>
                         <td>
+                            <a href="{{ route('admin.types.show', $project->type->id) }}">
+                                {{$project->type->title}}
+                            </a>
+                        </td>
+                        <td>
                             <a href="projects/{{$project->id}}" class="btn btn-primary my-2">Dettagli</a>
                             <a href="projects/{{$project->id}}/edit" class="btn btn-warning my-2">Modifica</a>
                             <form action="{{ route('admin.projects.destroy', ['id' => $project->id]) }}" method="POST">
@@ -29,7 +35,6 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Elimina</button>
                             </form>
-                            
                         </td>
                     </tr>
                     @endforeach
