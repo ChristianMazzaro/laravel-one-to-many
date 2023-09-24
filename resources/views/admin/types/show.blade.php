@@ -9,8 +9,14 @@
               <div class="card-body">
                 <h5 class="card-title">{{$type->title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{$type->slug}}</h6>
-                <a href="#" class="card-link">Bottone 1</a>
-                <a href="#" class="card-link">Bottone 2</a>
+                <a href="{{ route('admin.types.edit', ['id' => $type->id]) }}" class="btn btn-warning my-2 ">Modifica</a>
+                <form action="{{ route('admin.types.destroy', ['id' => $type->id]) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">Elimina</button>
+                </form>
+                <a href="#" class="card-link">torna ai progetti</a>
+                <a href="#" class="card-link">torna alle tipologie</a>
               </div>
             </div>
       </div>

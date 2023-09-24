@@ -10,10 +10,10 @@
             @csrf
             <div class="form-group">
                 <label for="title" class="form-label">Inserisci il nome della categoria</label>
-                <input type="text" id="title" name="title" class="form-control bg-secondary" required>
+                <input type="text" id="title" name="title" class="form-control" required>
 
                 <label for="slug" class="form-label">Inserisci lo slug:</label>
-                <input type="text" id="slug" name="slug" class="form-control bg-secondary" required>
+                <input type="text" id="slug" name="slug" class="form-control" required>
 
             </div>
 

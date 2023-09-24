@@ -79,8 +79,9 @@ class ProjectController extends Controller
      */
     public function edit(string $id)
     {
+        $types = Type::all();
         $project = Project::findOrFail($id);
-        return view('admin.projects.edit', compact('project'));
+        return view('admin.projects.edit', compact('project'),compact('types'));
     }
 
     /**
@@ -92,12 +93,14 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'content' => 'required',
+            'type_id' => 'nullable|exists:types,id',
         ]);
     
         $project = Project::findOrFail($id);
         $project->title = $validatedData['title'];
         $project->slug = $validatedData['slug'];
         $project->content = $validatedData['content'];
+        $project->type_id = $validatedData['type_id'];
         $project->save();
     
         return redirect()->route('admin.projects', ['id' => $project->id]);
