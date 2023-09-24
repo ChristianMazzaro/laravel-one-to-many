@@ -15,8 +15,8 @@
                   @method('DELETE')
                   <button type="submit" class="btn btn-danger">Elimina</button>
                 </form>
-                <a href="#" class="card-link">torna ai progetti</a>
-                <a href="#" class="card-link">torna alle tipologie</a>
+                <a href="{{ route('admin.projects') }}" class="card-link">torna ai progetti</a>
+                <a href="{{ route('admin.types') }}" class="card-link">torna alle tipologie</a>
               </div>
             </div>
       </div>
